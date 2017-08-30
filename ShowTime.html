@@ -22,11 +22,19 @@
 	</div>
 	<script>
 		var time = document.getElementById('time');
+		
+
 		var setTime = function(){
 			time.innerHTML = new Date();
 			setTimeout(setTime,1000);
 		}
 		setTimeout(setTime,1000);
+
+		//下面是代替setTimeout的方法。
+		// var setTime = function(){
+		// 	time.innerHTML = new Date();
+		// }
+		// setInterval(setTime,1000);
 	</script>
 </body>
 </html>
