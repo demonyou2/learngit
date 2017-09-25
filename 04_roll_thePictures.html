@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RollingPictures</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .m-container{
+            width: 600px;
+            height: 400px;
+            position: relative;
+            z-index: 2;
+            border: 2px solid blue;
+            overflow: hidden;
+        }
+        .lists{
+            width: 4200px;
+            height: 400px;
+            position: absolute;
+            z-index: 1;
+        }
+        .lists img{
+            float: left;
+        }
+        .button{
+            position: absolute;
+            bottom: 20px;
+            left:50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .button span{
+            width: 10px;
+            height: 10px;
+            float: left;
+            border: 1px solid white;
+            border-radius: 50%;
+            margin-left: 5px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .button .on{
+            background-color: #F00;
+        }
+        .arrow{
+            display: none;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0,0,0,0.4);
+            position: absolute;
+            z-index: 2;
+            text-decoration: none;
+            font-size: 30px;
+            line-height: 30px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            top:50%;
+            transform: translateY(-50%);
+        }
+        #prev{
+            left:20px;
+        }
+        #next{
+            right:20px;
+        }
+        .arrow:hover{
+            background-color: rgba(0,0,0,0.7);
+        }
+        .m-container:hover .arrow{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-container">
+        <div class="lists" style="left:-600px;">
+            <img src="img/5.jpg" alt="图片"/>
+            <img src="img/1.jpg" alt="图片"/>
+            <img src="img/2.jpg" alt="图片"/>
+            <img src="img/3.jpg" alt="图片"/>
+            <img src="img/4.jpg" alt="图片"/>
+            <img src="img/5.jpg" alt="图片"/>
+            <img src="img/1.jpg" alt="图片"/>
+        </div>
+        <div class="button">
+            <span index="0" class="on"></span>
+            <span index="1"></span>
+            <span index="2"></span>
+            <span index="3"></span>
+            <span index="4"></span>
+        </div>
+        <a href="javascript:;" class="arrow" id="prev">&lt</a>
+        <a href="javascript:;" class="arrow" id="next">&gt</a>
+    </div>
+    <script>
+        (function () {
+            var contain = document.querySelector('.m-container');
+            var lists = document.querySelector('.lists');
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var bnts = document.querySelector('.button').getElementsByTagName('span');
+            var index = 0;
+            var animated = false;//判断图片是否正在移动
+            var t;
+            //箭头切换
+            var animate = function (move) {
+                animated = true;
+                var left = parseInt(lists.style.left) +move;
+                var time = 300;//总时间
+                var interval = 10;//间隔时间
+                var speed = move / (time / interval);
+                function go () {
+                    if((speed < 0 && parseInt(lists.style.left) > left) || (speed > 0 && parseInt(lists.style.left) < left)){
+                        lists.style.left = parseInt(lists.style.left) + speed + 'px';
+                        setTimeout(go,interval);
+                    }else{
+                        animated = false;
+                        lists.style.left = left + 'px';
+                        if(left > -600){
+                            lists.style.left = -3000 + 'px';
+                        }
+                        if(left < -3000){
+                            lists.style.left = -600 + 'px';
+                        }
+                    }
+                }
+                go();
+            };
+            //按钮跟着图片一起点亮
+            var changeBnt = function () {
+                for(var i = 0;i < bnts.length;i++){
+                    if(bnts[i].className == "on"){
+                        bnts[i].className = "";
+                        break;
+                    }
+                }
+                bnts[index].className="on";
+            };
+            //左箭头
+            prev.addEventListener('click',function () {
+                if(index <= 0){
+                    index = 4;
+                }else{
+                    index--;
+                }
+                //当动画结束时，按钮才有反应
+                if(animated == false){
+                    animate(600);
+                }
+                changeBnt();
+            });
+            //右箭头
+            next.onclick = function () {
+                if(index >= 4){
+                    index = 0;
+                }else{
+                    index++;
+                }
+                if(animated == false){
+                    animate(-600);
+                }
+                changeBnt();
+            };
+            //5个按钮的事件
+            for(var i = 0;i < bnts.length;i++){
+                bnts[i].addEventListener('click',function (i) {
+                    if(this.className == "on"){
+                        return;
+                    }
+                    var nowIndex = parseInt(this.getAttribute('index'));
+                    var offset = -600 * (nowIndex - index);
+                    if(animated == false){
+                        animate(offset);
+                    }
+                    index = nowIndex;
+                    changeBnt();
+                });
+            }
+            //自动轮播
+            function play () {
+                t = setInterval(function () {
+                    next.onclick();
+                },2000);
+            }
+            function stop () {
+                clearInterval(t);
+            }
+            contain.addEventListener('mouseout',function () {
+                play();
+            });
+            contain.addEventListener('mouseover',function () {
+                stop();
+            });
+            play();
+        })();
+    </script>
+</body>
+</html>

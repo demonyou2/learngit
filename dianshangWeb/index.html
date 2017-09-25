@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shoping_Web</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/dianshangCss.css">
+</head>
+<body>
+<div class="g-head">
+    <div class="m-login">
+        <div class="f-textaligncenter">
+            <div class="f-iconleft">
+                <a href="#" class="u-icon">收藏慕课</a>
+            </div>
+            <div class="f-loginright">
+                <span>欢迎来到慕课网！</span><a href="#">[登录]</a><a href="#">[免费注册]</a>
+            </div>
+        </div>
+    </div><!-- login end -->
+    <div class="m-search">
+        <div class="f-textaligncenter">
+            <div class="u-logo">
+                <a href="#"><img src="style/logo/logo1.png" alt="logo图片"></a>
+            </div>
+            <div class="u-search">
+                <input type="text" class="searchtext">
+                <input type="button" class="search-bnt" value="搜 索">
+            </div>
+            <div class="u-shopcar">
+                <span class="shopcars">购物车</span>
+                <span class="shopnum">0</span>
+            </div>
+        </div>
+    </div><!-- serch end -->
+    <div class="m-nav">
+        <div class="f-textaligncenter">
+            <div class="u-nav">
+                <h3>全部商品分类</h3>
+                <div class="goods_show">
+                    <dl class="goods_item"><!-- 1 -->
+                        <dt><a href="#">手机</a><a href="#">数码</a><a href="#" class="bg-blue">合约机</a></dt>
+                        <dd><a href="#">荣耀3X</a><a href="#">单反</a><a href="#">智能设备</a></dd>
+                    </dl>
+                    <dl class="goods_item"><!-- 2当点击该栏是 增加class="item_active"  -->
+                        <dt><a href="#">电脑</a><a href="#">硬件外设</a><a href="#" class="bg-blue">装机宝</a></dt>
+                        <dd><a href="#">笔记本</a><a href="#">台式机</a><a href="#">超极本</a><a href="#">平板</a></dd>
+                    </dl>
+                    <dl class="goods_item"><!-- 3 -->
+                        <dt><a href="#">大家电</a></dt>
+                        <dd><a href="#">电视</a><a href="#">空调</a><a href="#">冰箱</a><a href="#"洗衣机></a></dd>
+                    </dl>
+                    <dl class="goods_item"><!-- 4 -->
+                        <dt><a href="#">厨房电器</a><a href="#">生活电器</a></dt>
+                        <dd><a href="#">空气净化器</a><a href="#">微波炉</a><a href="#">取暖设备</a></dd>
+                    </dl>
+                    <dl class="goods_item"><!-- 5 -->
+                        <dt><a href="#">食品</a><a href="#">饮料</a><a href="#">生鲜</a><a href="#" class="bg-blue">合约机</a></dt>
+                        <dd><a href="#">方便面</a><a href="#">零食</a><a href="#">保健</a></dd>
+                    </dl>
+                </div><!-- goods_show end -->
+                <div class="lists_for_goods_show hidden"><!-- 当点击 u-nav 时 会激活 item_active的class 此时该div为 .show-->
+                    <div class="lists"><!-- 1 -->
+                            <dl>
+                                <dt><a href="#">电脑整机</a></dt>
+                                <dd><a href="#">笔记本</a><a href="#">超级本</a><a href="#">上网本</a><a href="#">平板电脑</a><a href="#">台式机</a></dd>
+                            </dl>
+                    </div>
+                    <div class="lists"><!-- 2 -->
+                            <dl>
+                                <dt><a href="#">装机配件</a></dt>
+                                <dd><a href="#">CPU</a><a href="#">硬盘</a><a href="#">内存</a><a href="#">显示器</a><a href="#">主板</a><a
+                                        href="#">显卡</a><a href="#">机箱</a><a href="#">电源</a><a href="#">散热器</a><a
+                                        href="#">光驱</a><a href="#">声卡</a><a href="#">拓展卡</a><a href="#">DIY小附件</a><a
+                                        href="#">刻录机</a></dd>
+                            </dl>
+                        </div>
+                    <div class="lists"><!-- 3 -->
+                            <dl>
+                                <dt><a href="#">整机附件</a></dt>
+                                <dd><a href="#">电脑包</a><a href="#">电脑桌</a><a href="#">电池</a><a href="#">电源配适器</a><a href="#">贴膜</a><a
+                                        href="#">清洁用品</a><a href="#">笔记本散热器</a><a href="#">USB拓展</a><a href="#">平板配件</a><a href="#">影音线材</a><a
+                                        href="#">电脑线材</a><a href="#">特色附件</a><a href="#">插座网线</a></dd>
+                            </dl>
+                        </div>
+                    <div class="lists"><!-- 4 -->
+                            <dl>
+                                <dt><a href="#">电脑外设</a></dt>
+                                <dd><a href="#">鼠标</a><a href="#">键盘</a><a href="#">移动硬盘</a><a href="#">摄像头</a><a href="#">外置盒</a><a
+                                        href="#">手写板</a><a href="#">高清播放器</a></dd>
+                            </dl>
+                        </div>
+                    <div class="lists"><!-- 5 -->
+                            <dl>
+                                <dt><a href="#">网络设备</a></dt>
+                                <dd><a href="#">路由器</a><a href="#">网卡</a><a href="#">3G无线上网</a><a href="#">交换机</a><a href="#">网络配件</a></dd>
+                            </dl>
+                        </div>
+                    <div class="lists"><!-- 6 -->
+                            <dl>
+                                <dt><a href="#">音频设备</a></dt>
+                                <dd><a href="#">音响</a><a href="#">麦克风</a><a href="#">声卡</a><a href="#">录音笔</a><a href="#">音频附件</a></dd>
+                            </dl>
+                        </div>
+                    <div class="lists_link">
+                        <span class="lists_link1">电脑整机频道<i></i></span>
+                        <span class="lists_link2">硬件/外设频道<i></i></span>
+                    </div>
+                </div>
+            </div><!-- u_nav end -->
+            <ul class="u-hotlist">
+                <li  class="actived"><a href="#">数码城</a></li>
+                <li><a href="#">天黑黑</a></li>
+                <li><a href="#">团购</a></li>
+                <li><a href="#">发现</a></li>
+                <li><a href="#">二手特卖</a></li>
+                <li><a href="#">名品会</a></li>
+            </ul>
+        </div>
+    </div><!-- nav end -->
+</div><!-- g-head end -->
+<div class="g-banner clearfix">
+    <div class="u-banner_ads">
+        <ul class="ads_imgs">
+            <li><img src="img/banner1.png" alt="pic1"></li>
+            <li><img src="img/banner2.0.png" alt="pic2"></li>
+        </ul>
+        <div class="ads_bnt">
+            <a href="#" class="ads_bnt_actived"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+</div><!-- g-banner end -->
+<div class="g-shopNav1 f-textaligncenter clearfix">
+    <i></i><h3>家用电脑</h3><a href="＃">更多&gt;&gt;</a>
+</div><!-- g-shopNav1 end -->
+<div class="g-shopLists f-textaligncenter">
+    <div class="leftlist">
+        <div class="shoplist_banner">
+            <ul class="shopimgs">
+                <li><img src="img/shopnavlist1.png" alt="pic1"></li>
+                <li><img src="img/shopnavlist2.png" alt="pic2"></li>
+            </ul>
+            <div class="imgs_bnt">
+                <a href="#" class="imgs_bnt_actived"></a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+    <div class="rightlist">
+        <div class="top_list">
+            <ul>
+                <li><img src="img/htc.png" alt="pic"><h3>HTC新渴望8系列</h3><p>1899元</p></li>
+                <li><img src="img/htc.png" alt="pic"><h3>HTC新渴望8系列</h3><p>1899元</p></li>
+                <li><img src="img/htc.png" alt="pic"><h3>HTC新渴望8系列</h3><p>1899元</p></li>
+                <li class="last_list"><img src="img/htc.png" alt="pic"><h3>HTC新渴望8系列</h3><p>1899元</p></li>
+            </ul>
+        </div>
+        <div class="bottom_list">
+            <ul>
+                <li><img src="img/shoplist1.png" alt="1pic"><h3>NFC技术一碰轻松
+                    配对！接触屏幕</h3><p>¥149.00</p></li>
+                <li><img src="img/shoplist2.png" alt="2pic"><h3>Samsung三星G
+                    ALAXY Grand2</h3><p>¥2000.00</p></li>
+                <li><img src="img/shoplist3.png" alt="3pic"><h3>全网低价 Apple
+                    苹果iPad mini1</h3><p>¥1888.00</p></li>
+                <li class="last_list"><img src="img/shoplist4.png" alt="4pic"><h3>Apple苹果 全新
+                    Retina屏MacBoo</h3><p>¥20020.00</p></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- shoplist end -->
+<div class="g-shopNav1 f-textaligncenter clearfix">
+    <i></i><h3>食品酒水</h3><a href="＃">更多&gt;&gt;</a>
+</div><!-- g-shopNav1 end -->
+<div class="g-shopLists f-textaligncenter clearfix">
+    <div class="leftlist">
+        <div class="shoplist_banner">
+            <ul class="shopimgs">
+                <li><img src="img/shopnavlist2.png" alt="pic1"></li>
+                <li><img src="img/shopnavlist1.png" alt="pic2"></li>
+            </ul>
+            <div class="imgs_bnt">
+                <a href="#" class="imgs_bnt_actived"></a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+    <div class="rightlist">
+        <div class="top_list">
+            <ul>
+                <li><img src="img/shopshiping.png" alt="pic"><h3>三月美食狂享购</h3><p>50元</p></li>
+                <li><img src="img/shopshiping.png" alt="pic"><h3>三月美食狂享购</h3><p>80元</p></li>
+                <li><img src="img/shopshiping.png" alt="pic"><h3>三月美食狂享购</h3><p>20元</p></li>
+                <li class="last_list"><img src="img/shopshiping.png" alt="pic"><h3>三月美食狂享购</h3><p>30元</p></li>
+            </ul>
+        </div>
+        <div class="bottom_list">
+            <ul>
+                <li><img src="img/shopshiping2.png" alt="1pic"><h3>康比特 维他保咀
+                    嚼片 60片</h3><p>¥100</p></li>
+                <li><img src="img/shopshiping2.png" alt="2pic"><h3>康比特 维他保咀
+                    嚼片 60片</h3><p>¥80</p></li>
+                <li><img src="img/shopshiping2.png" alt="3pic"><h3>康比特 维他保咀
+                    嚼片 60片</h3><p>¥60</p></li>
+                <li class="last_list"><img src="img/shopshiping2.png" alt="4pic"><h3>康比特 维他保咀
+                    嚼片 60片</h3><p>¥40</p></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- shoplist end --><!-- &copy; -->
+<div class="g-foot">
+    <p><a href="#">慕课简介</a><i>|</i><a href="#">慕课公告</a><i>|</i><a href="#">招纳贤士</a><i>|</i><a href="#">联系我们</a><i>|</i><a
+        href="#">客服热线：400-675-1234</a></p>
+    <p>Copyright&nbsp;&copy;2006 - 2014 慕课版权所有&nbsp;&nbsp;京&nbsp;ICP备09037834号&nbsp;&nbsp;&nbsp;京ICP证B1034-8373号&nbsp;&nbsp;&nbsp;某市公安局XX分局备案编号：123456789123</p>
+    <p><img src="img/foot-copy.png" alt="copy"><img src="img/foot-copy.png" alt="copy"><img src="img/foot-copy.png" alt="copy"><img src="img/foot-copy.png" alt="copy"></p>
+</div>
+</body>
+</html>

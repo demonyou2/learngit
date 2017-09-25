@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{border: 1px solid #ccc;}
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+<script>
+    (function () {
+        var Width = 1024;
+        var Height = 700;
+        var Radius = 8;
+        var ball ={x:100,y:50,g:1,vx:-5,vy:-10};
+        window.onload = function () {
+            var canvas = document.querySelector('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = Width;
+            canvas.height = Height;
+            context.fillStyle = "#00f";
+            drawDown(ball.x,ball.y,context);
+            var t = setInterval(function () {
+                ballChange(context);
+                drawDown(ball.x,ball.y,context);
+            },20);
+
+        }
+        function drawDown (x,y,ctx) {
+            ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+            ctx.beginPath();
+            ctx.arc(x,y,Radius,0,2*Math.PI);
+            ctx.fill();
+        }
+        function ballChange(ctx) {
+            ball.x -= ball.vx;
+            ball.y += ball.vy;
+            ball.vy += ball.g;
+            if(ball.y + Radius >= ctx.canvas.height){
+                ball.y = ctx.canvas.height - Radius;
+                ball.vy = -ball.vy / 2;
+            }
+            if(ball.x + Radius >= ctx.canvas.width){
+                ball.x = ctx.canvas.width - Radius;
+                ball.vx = -ball.vx;
+            }
+            if(ball.x - Radius <= 0){
+                ball.x = Radius;
+                ball.vx = -ball.vx;
+            }
+        }
+    })()
+</script>
+</html>

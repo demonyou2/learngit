@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        canvas{display:block;border: 1px solid #ccc;margin: 50px auto;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    (function () {
+        var digit =
+            [
+                [
+                    [0,0,1,1,1,0,0],
+                    [0,1,1,0,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,0,1,1,0],
+                    [0,0,1,1,1,0,0]
+                ],//0
+                [
+                    [0,0,0,1,1,0,0],
+                    [0,1,1,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [1,1,1,1,1,1,1]
+                ],//1
+                [
+                    [0,1,1,1,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,1,1,0,0,0],
+                    [0,1,1,0,0,0,0],
+                    [1,1,0,0,0,0,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,1,1,1,1,1]
+                ],//2
+                [
+                    [1,1,1,1,1,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,1,1,1,0,0],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,1,1,0]
+                ],//3
+                [
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,1,0],
+                    [0,0,1,1,1,1,0],
+                    [0,1,1,0,1,1,0],
+                    [1,1,0,0,1,1,0],
+                    [1,1,1,1,1,1,1],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,1,1]
+                ],//4
+                [
+                    [1,1,1,1,1,1,1],
+                    [1,1,0,0,0,0,0],
+                    [1,1,0,0,0,0,0],
+                    [1,1,1,1,1,1,0],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,1,1,0]
+                ],//5
+                [
+                    [0,0,0,0,1,1,0],
+                    [0,0,1,1,0,0,0],
+                    [0,1,1,0,0,0,0],
+                    [1,1,0,0,0,0,0],
+                    [1,1,0,1,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,1,1,0]
+                ],//6
+                [
+                    [1,1,1,1,1,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,0,1,1,0,0],
+                    [0,0,1,1,0,0,0],
+                    [0,0,1,1,0,0,0],
+                    [0,0,1,1,0,0,0],
+                    [0,0,1,1,0,0,0]
+                ],//7
+                [
+                    [0,1,1,1,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,1,1,0]
+                ],//8
+                [
+                    [0,1,1,1,1,1,0],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [1,1,0,0,0,1,1],
+                    [0,1,1,1,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,0,1,1],
+                    [0,0,0,0,1,1,0],
+                    [0,0,0,1,1,0,0],
+                    [0,1,1,0,0,0,0]
+                ],//9
+                [
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,1,1,0],
+                    [0,1,1,0],
+                    [0,0,0,0],
+                    [0,0,0,0],
+                    [0,1,1,0],
+                    [0,1,1,0],
+                    [0,0,0,0],
+                    [0,0,0,0]
+                ]//:
+            ];
+        var Width = 1024;
+        var Height = 700;
+        var Radius = 8;
+        var MarginLeft = 20;
+        var MarginTop = 30;
+        var hour = 1;
+        var minute = 1;
+        var second = 10;
+        window.onload = function () {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = Width;
+            canvas.height = Height;
+            rander(context);
+            var t = setInterval(function () {
+               timecut();
+                rander(context);
+            },1000);
+
+        };
+        function timecut() {
+            if(second === 0) {
+                second = 59;
+                if (minute !== 0) {
+                    minute--;
+                } else {
+                    if (hour !== 0) {
+                        minute = 59;
+                        hour--;
+                    } else {
+                        hour = 0;
+                        minute = 0;
+                        second = 0;
+                    }
+                }
+            }else {
+                second --;
+            }
+        }
+        function rander(ctx) {
+            ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+            drawDigit(MarginLeft,MarginTop,parseInt(hour / 10),ctx);
+            drawDigit(MarginLeft+15*(Radius+1),MarginTop,parseInt(hour % 10),ctx);
+            drawDigit(MarginLeft+30*(Radius+1),MarginTop,10,ctx);// 冒号在digit里面的index是10
+            drawDigit(MarginLeft+40*(Radius+1),MarginTop,parseInt(minute / 10),ctx);
+            drawDigit(MarginLeft+55*(Radius+1),MarginTop,parseInt(minute % 10),ctx);
+            drawDigit(MarginLeft+70*(Radius+1),MarginTop,10,ctx);// 冒号在digit里面的index是10
+            drawDigit(MarginLeft+80*(Radius+1),MarginTop,parseInt(second / 10),ctx);
+            drawDigit(MarginLeft+95*(Radius+1),MarginTop,parseInt(second % 10),ctx);
+        }
+
+        function drawDigit(x,y,num,ctx) {
+            ctx.fillStyle = "#00F";
+            for(var i = 0;i < digit[num].length;i++){
+                for(var j = 0;j < digit[num][i].length;j++){
+                    if(digit[num][i][j] === 1){
+                        ctx.beginPath();
+                        ctx.arc(x+j*2*(Radius+1)+(Radius+1),y+i*2*(Radius+1)+(Radius+1),Radius,0,2*Math.PI);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+
+    })()
+
+</script>
+</html>

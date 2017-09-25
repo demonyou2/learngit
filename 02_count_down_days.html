@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Days_count_down</title>
+    <style>
+        .m-main{
+            width: 400px;
+            height: 200px;
+            white-space: nowrap;
+        }
+        p{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-main">
+        <p>距离考研还有</p><span id="count"></span><p>天</p>
+    </div>
+    <script>
+        (function () {
+            var nowTime = new Date();
+            var endTime = new Date("2017,12,23");
+            var time = Math.ceil((endTime - nowTime) / (24*60*60*1000));
+            document.querySelector("#count").innerHTML = time;
+        })();
+    </script>
+</body>
+</html>
