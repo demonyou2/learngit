@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+}
+.Pic{
+    width: 1200px;
+    height: 350px;
+    margin: auto;
+}
+ul li{
+    width: 220px;
+    height: 160px;
+    list-style-type: none;
+    float: left;
+    margin-left: 20px;
+}
+ul li a img{
+    width: 220px;
+    height: 160px;
+}
+#view{
+    position: absolute;
+    text-align: center;
+}
+#view img{
+    display: block;
+    width: 450px;
+    height: 320px;
+}
