@@ -3,3 +3,5 @@
 2.轮播图[demo](https://demonyou2.github.io/learngit/04_roll_thePictures.html)(由于图片加载较慢，故不能很好的看到效果)<br/>
 3.小球滚落[demo](https://demonyou2.github.io/learngit/06_ball_fallDown.html)<br/>
 4.模拟电商[demo](https://demonyou2.github.io/learngit/dianshangWeb/index.html)<br/>
+5.1图片预览(js)[demo](https://demonyou2.github.io/learngit/PicturesView/index.html)<br/>
+5.2图片预览(jQuery)[demo](https://demonyou2.github.io/learngit/PicturesView/index(jQuery).html)<br/>
