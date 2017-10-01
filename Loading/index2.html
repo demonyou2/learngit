@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading(onreadystatechange)</title>
+    <style>
+        * { padding: 0; margin: 0; }
+        body, html { width: 100%; height: 100%; }
+        .g-body { width: 100%; height: 100%; }
+        .g-body img { display: block; width: 100%; height: 100%; }
+        .loading { width: 100%; height: 100%; position: fixed; z-index: 99; background-color: #fff; }
+        .loading img{position: absolute;display: block;width: 128px;height: 128px;left: 0;top: 0;
+            right: 0;bottom: 0;margin: auto;}
+    </style>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        (function () {
+            document.onreadystatechange = function () {
+                if(document.readyState === "complete"){
+                    $('.loading').fadeOut();
+                }
+            }
+        })()
+    </script>
+</head>
+<body>
+<div class="loading">
+    <img src="imgs/pic_of_loadingIcon/3.gif" alt="loading">
+</div>
+<div class="g-body">
+    <img src="imgs/81130012.JPG" alt="pic1">
+    <img src="imgs/IMG_8866-1.JPG" alt="pic2">
+</div>
+</body>
+</html>
