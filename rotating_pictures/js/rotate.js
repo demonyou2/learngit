@@ -17,7 +17,7 @@ $(function () {
         $('.imgs li').eq(index).stop().fadeIn().siblings().stop().fadeOut();
    });
     //自动轮播
-    var t = setInterval(movingR,1000);
+    var t = setInterval(movingR,2000);
     function movingR() {
         i++;
         if(i === s){
@@ -45,6 +45,6 @@ $(function () {
     $('.u-rotate').hover(function () {
         clearInterval(t);
     },function () {
-        t = setInterval(movingR,1000);
+        t = setInterval(movingR,2000);
     });
 });
