@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LogoZW</title>
+    <style>
+        #canvas{
+            display: block;
+            outline: 1px solid red;
+            margin: 50px auto;
+            /*background-color: #000;*/
+            /*background-color: #fff;*/
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        (function () {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            window.onload = function () {
+//                context.strokeStyle = "white";
+
+            context.beginPath()
+//                context.fillStyle = "black";
+            context.fillStyle = "white";
+            context.rect(0,0,canvas.width,canvas.height);
+            context.fill();
+
+
+
+                context.beginPath();
+                context.fillStyle = "black";
+//                context.fillStyle = "white";
+                context.moveTo(25,75);
+                context.lineTo(75,400);
+                context.lineTo(150,400);
+                context.lineTo(175,350);
+                context.lineTo(200,400);
+                context.lineTo(275,400);
+                context.lineTo(325,75);
+                context.lineTo(225,75);
+                context.lineTo(225,100);
+                context.lineTo(275,100);
+                context.lineTo(245,275);
+                context.lineTo(215,275);
+                context.lineTo(200,200);
+                context.lineTo(150,200);
+                context.lineTo(135,275);
+                context.lineTo(105,275);
+                context.lineTo(75,75);
+                context.closePath();
+//                context.stroke();
+                context.fill();
+
+                context.beginPath();
+                context.fillStyle = "black";
+//                context.fillStyle = "white";
+                context.moveTo(312.5,300);
+                context.lineTo(400,300);
+                context.lineTo(355,375);
+                context.lineTo(450,375);
+                context.lineTo(462.5,325);
+                context.lineTo(475,375);
+                context.lineTo(475,400);
+                context.lineTo(305,400);
+                context.lineTo(350,325);
+                context.lineTo(312.5,325);
+                context.closePath();
+//                context.stroke();
+                context.fill();
+
+                context.beginPath();
+//                context.strokeStyle = "black";
+//                context.fillStyle = "black";
+//                context.moveTo(325,312.5);
+                context.fillStyle = "white";
+                context.arc(325,312.5,5,0,2*Math.PI);
+                context.fill();
+//                context.stroke();
+                context.beginPath();
+                context.fillStyle = "white";
+                context.rect(100,325,25,25);
+                context.fill();
+
+                context.beginPath();
+                context.fillStyle = "white";
+                context.rect(225,325,25,25);
+                context.fill();
+            }
+        })()
+    </script>
+</body>
+</html>
