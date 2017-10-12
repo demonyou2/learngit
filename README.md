@@ -7,5 +7,5 @@
 5.2图片预览(jQuery)[demo](https://demonyou2.github.io/learngit/PicturesView/index(jQuery).html)<br/>
 6.放大镜效果[demo](https://demonyou2.github.io/learngit/Magnifier/index.html)<br/>
 7.loading效果[demo1](https://demonyou2.github.io/learngit/Loading/index1.html) [demo2](https://demonyou2.github.io/learngit/Loading/index2.html) [demo3](https://demonyou2.github.io/learngit/Loading/index3.html) [demo4](https://demonyou2.github.io/learngit/Loading/index4.html)<br/>
-8.焦点图（jQuery淡入淡出效果）[demo](https://demonyou2.github.io/learngit/rotating_pictures/index.html)[demo2](https://demonyou2.github.io/learngit/rotating_pictures/index.htm3)<br/>
+8.焦点图（jQuery淡入淡出效果）[demo](https://demonyou2.github.io/learngit/rotating_pictures/index.html) [demo2](https://demonyou2.github.io/learngit/rotating_pictures/index.htm3)<br/>
 9.仿制网易教育部[demo](https://demonyou2.github.io/learngit/netease_education_project/index.html)(点击关注，显示登陆页面)<br/>
