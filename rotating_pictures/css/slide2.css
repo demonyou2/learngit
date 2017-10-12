@@ -1,0 +1,64 @@
+html,body{width: 100%;height: 100%}
+.g-body{
+    position: relative;
+    width: 550px;
+    height: 300px;
+    margin: 100px auto;
+    outline: 1px solid #000;
+    font-size: 0;
+    overflow: hidden;
+}
+.g-body .u-imgs{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3000px;
+    height: 300px;
+}
+.u-imgs li{
+    float: left;
+}
+.g-body .bnts{
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+}
+.g-body .bnts li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: rgba(1,1,1,0.4);
+    margin-left: 5px;
+    cursor: pointer;
+}
+.g-body .pre,.g-body .next{
+    position: absolute;
+    /*display: inline-block;*/
+    display: none;
+    width: 30px;
+    height: 70px;
+    background-color: rgba(1,1,1,0.4);
+    color: #fff;
+    font-size: 40px;
+    line-height: 70px;
+    cursor: pointer;
+    text-align: center;
+}
+.g-body .pre{
+    left: 0;
+    top: 50%;
+    margin-top: -35px;
+}
+.g-body .next{
+    right: 0;
+    top: 50%;
+    margin-top: -35px;
+}
+.g-body:hover .pre,.g-body:hover .next{
+    display: inline-block;
+}
+.g-body .bnts .active{
+    background-color: #fff;
+}
