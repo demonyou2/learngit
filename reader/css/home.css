@@ -68,6 +68,10 @@ body{
     height: 150px;
     background-color: #283548;
 }
+.g-imgsTransition li img{
+    width: 100%;
+    height: 100%;
+}
 /*导航*/
 .g-nav{
     width: 100%;
