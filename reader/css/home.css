@@ -1,0 +1,150 @@
+html{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+body{
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    overflow: hidden;
+}
+/*分割线*/
+.g-hr{
+    width: 100%;
+    height: 8px;
+    background-color: #cccccc;
+}
+/* header */
+.g-header{
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    background-color: #ccc;
+    color: #000;
+    text-align: left;
+    font-size: 16px;
+}
+.g-header h2{
+    display: inline-block;
+    line-height: 50px;
+}
+.g-header .u-bookstore{
+    margin-left: 30%;
+}
+.g-header .u-bookcase{
+    margin-left: 10%;
+    margin-right: 20%;
+}
+.g-header .u-logo{
+    display: inline-block;
+    float: left;
+    line-height: 50px;
+}
+.g-header .u-user{
+    display: inline-block;
+    float: right;
+    width: 20px;
+    height: 50px;
+    background: url("../img/boUg2EJlVetOMC.png") no-repeat center center;
+    background-size: contain;
+    margin-right: 6%;
+}
+/* search */
+.g-search{
+    margin-top: 55px;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    margin-bottom: 1%;
+}
+.g-search .u-search{
+    width: 90%;
+    height: 30px;
+}
+/* 轮播 */
+.g-imgsTransition{
+    width: 100%;
+    height: 150px;
+    background-color: #283548;
+}
+/*导航*/
+.g-nav{
+    width: 100%;
+    height: 80px;
+}
+
+.g-nav .u-navLists{
+    width: 100%;
+    height: 80px;
+    text-align: center;
+}
+.u-navLists li{
+    display: inline-block;
+    width: 18%;
+    height: 80px;
+    line-height: 80px;
+}
+.u-navLists li img{
+    width: 22px;
+    height:22px;
+}
+.u-navLists li p{
+    margin-top: -60px;
+}
+/* 精品推荐 */
+.g-best{
+    width: 100%;
+}
+.g-best .u-bestTitle{
+    width: 100%;
+    height: 25px;
+}
+.g-best .u-bestTitle h3{
+    display: inline-block;
+    font-size: 20px;
+    line-height: 25px;
+}
+.g-best .u-bestTitle a{
+    float: right;
+    font-size: 15px;
+    line-height: 25px;
+    margin-right: 2%;
+}
+.u-hotBooks{
+    width: 95%;
+    margin: 20px auto;
+    text-align: center;
+}
+.u-hotBooks .u-books{
+    display: inline-block;
+    width: 28%;
+    height: 200px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-left: 3%;
+}
+.u-books a img{
+    width: 90%;
+    height: 150px;
+    margin: 0 auto;
+}
+.u-books p{
+    width: 100%;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* 新书上架 */
+
+/* 底部 */
+footer{
+    width: 100%;
+    height: 25px;
+    text-align: center;
+}
+footer p{
+    font-size: 20px;
+    line-height: 25px;
+}

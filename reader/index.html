@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="root" class="container">
+        <div class="m-article-action">
+            <div class="article-action-mid" id="action-mid"></div>
+        </div>
+        <div id="top-nav" class="top-nav" style="display: none;">
+            <div class="icon-back"><a href="./home.html" style="color: #fff;">&lt;</a></div>
+            <div class="nav-title"><a href="./home.html" style="color: #fff;">返回书架</a></div>
+        </div>
+        <div id="fiction_chapter_title"></div>
+        <div id="fiction_container" class="m-read-content">
+
+        </div>
+        <div class="m-button-bar">
+            <ul class="u-tab">
+                <li id="prev_button">上一章</li>
+                <li id="next_button">下一章</li>
+            </ul>
+        </div>
+        <div class="bottom-nav-bk bottom_nav" style="display: none;"></div>
+        <div class="bottom-nav bottom_nav" style="display: none;">
+            <div class="item menu-button" id="menu_button">
+                <div class="item-warp">
+                    <div class="icon-menu"></div>
+                    <div class="icon-text">
+                        目录
+                    </div>
+                </div>
+            </div>
+            <div class="item" id="font-button">
+                <div class="item-warp">
+                    <div class="icon-ft"></div>
+                    <div class="icon-text">
+                        字体
+                    </div>
+                </div>
+            </div>
+            <div class="item" id="night-button">
+                <div class="item-warp" id="day_icon" style="display:none">
+                    <div class="icon-day"></div>
+                    <div class="icon-text">
+                        白天
+                    </div>
+                </div>
+                <div class="item-warp" id="night_icon">
+                    <div class="icon-night"></div>
+                    <div class="icon-text">
+                        夜间
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-pannel-bk font-container" style="display: none;"></div>
+        <div class="nav-pannel font-container" id="font-container" style="display: none;">
+            <div class="child-mod">
+                <span>字号</span>
+                <button id="large-font" class="font-size-button">大</button>
+                <button id="small-font" class="font-size-button">小</button>
+            </div>
+            <div class="child-mod">
+                <span>背景</span>
+                <div class="bk-container col1">
+                    <div class="bk-container-current"></div>
+                </div>
+                <div class="bk-container col2">
+                    <div class="bk-container-current"></div>
+                </div>
+                <div class="bk-container col3">
+                    <div class="bk-container-current col3"></div>
+                </div>
+                <div class="bk-container col4">
+                    <div class="bk-container-current"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="lib/zepto.min.js"></script>
+    <script>
+        window.jQuery = $;
+    </script>
+    <script src="js/jquery.base64.js"></script>
+    <script src="js/jquery.jsonp.js"></script>
+    <script>
+        (function () {
+            var Util = (function () {
+                var prefix = 'html5_reader_';
+                var StorageGetter = function (key) {
+                   return localStorage.getItem(prefix + key);
+//                    return localStorage.getItem(key);
+                };
+                var StorageSetter = function (key,value) {
+                    return localStorage.setItem(prefix + key,value);
+//                    localStorage.setItem(key,value);
+                };
+                function getBSONP(url, callback) {
+                    return $.jsonp({
+                        url : url,
+                        cache : true,
+                        callback : "duokan_fiction_chapter",
+                        success : function(result) {
+                            var data = $.base64.decode(result);
+                            var json = decodeURIComponent(escape(data));
+                            callback(json);
+                        }
+                    });
+                };
+                return {
+                    getBSONP : getBSONP,
+                    StorageGetter : StorageGetter,
+                    StorageSetter : StorageSetter
+                }
+            })();
+            var Dom = {
+                top_nav: $('#top-nav'),
+                bottom_nav: $('.bottom_nav'),
+                font_container: $('.font-container'),
+                font_button: $('#font-button')
+            };
+            var Win = $(window);
+            var Doc = $(document);
+            var readerModel;
+            var readerUI;
+            var rootContainer = $('#fiction_container');
+            var initFontSize = parseInt(Util.StorageGetter('font-size')) ? parseInt(Util.StorageGetter('font-size')) : 14;
+//            console.log(initFontSize);
+            rootContainer.css('font-size',initFontSize);
+            function  main() {
+                readerModel = ReaderModel();
+                readerUI = ReaderBaseFrame(rootContainer);
+                readerModel.init(function (data) {
+                    readerUI(data);
+                });
+                EventHandler();
+            }
+
+            function ReaderModel() {
+                var Chapter_id;
+                var ChapterTotal;
+                var init = function (UIcallback) {
+                    getFictionInfo(function () {
+                        getChapterContent(Chapter_id,function (data) {
+                            UIcallback && UIcallback(data);
+                        });
+                    });
+                };
+                var getFictionInfo = function (callback) {
+                    $.get('data/chapter.json',function (data) {
+                        Chapter_id = Util.StorageGetter('last_chapter_id');
+                        if(Chapter_id === null){
+                            Chapter_id = data.chapters[1].chapter_id;
+                        }
+                        ChapterTotal = data.chapters.length;
+                        callback && callback();
+                    },'json');
+                };
+                var getChapterContent = function (chapter_id,callback) {
+                    $.get('data/data' + chapter_id +'.json',function (data) {
+                        if(data.result === 0){
+                            var url = data.jsonp;
+                            Util.getBSONP(url,function (data) {
+//                                console.log(JSON.parse(data));
+                                callback && callback(data);
+                            });
+                        }
+                    },'json');
+                };
+                var preChapter = function (UIcallback) {
+                    Chapter_id = parseInt(Chapter_id,10);
+                    if(Chapter_id === 0){
+                        return;
+                    }
+                    Chapter_id -= 1;
+                    getChapterContent(Chapter_id,UIcallback);
+                    Util.StorageSetter('last_chapter_id',Chapter_id);
+                    window.scrollTo(10,10);
+                };
+                var nextChapter = function (UIcallback) {
+                    Chapter_id = parseInt(Chapter_id,10);
+                    if(Chapter_id === ChapterTotal){
+                        return;
+                    }
+                    Chapter_id += 1;
+                    getChapterContent(Chapter_id,UIcallback);
+                    Util.StorageSetter('last_chapter_id',Chapter_id);
+                    window.scrollTo(10,10);
+                };
+                return{
+                    init: init,
+                    preChapter: preChapter,
+                    nextChapter: nextChapter
+                }
+            }
+
+            function ReaderBaseFrame(container) {
+                function parseChapterData(jsonData) {
+                    var jsonObj = JSON.parse(jsonData);
+                    var html = '<h4>' + jsonObj.t + '</h4>';
+                    for(var i = 0;i < jsonObj.p.length;i++){
+                        html += '<p>' + jsonObj.p[i] + '</p>';
+                    }
+                    return html;
+                }
+                return function (data) {
+                    container.html(parseChapterData(data));
+                }
+            }
+            
+            function EventHandler() {
+                /* 点击显示头部导航和底部导航 */
+                $('#action-mid').click(function () {
+                    if(Dom.top_nav.css('display') === 'none'){
+                        Dom.top_nav.show();
+                        Dom.bottom_nav.show();
+                    }else {
+                        Dom.top_nav.hide();
+                        Dom.bottom_nav.hide();
+                        Dom.font_container.hide();
+                        Dom.font_button.removeClass('current');
+                    }
+                });
+                /* 滚动隐藏导航 */
+                Win.scroll(function () {
+                    Dom.top_nav.hide();
+                    Dom.bottom_nav.hide();
+                    Dom.font_container.hide();
+                    Dom.font_button.removeClass('current');
+                });
+                /* 字体按键 */
+                Dom.font_button.click(function () {
+                    if(Dom.font_container.css('display') === 'none'){
+                        Dom.font_container.show();
+                        Dom.font_button.addClass('current');
+                    }else{
+                        Dom.font_container.hide();
+                        Dom.font_button.removeClass('current');
+                    }
+                });
+                /* 白天黑夜 */
+                $('#night-button').click(function () {
+                    if($('#day_icon').css('display') === 'none'){
+                        $('#night_icon').hide();
+                        $('#day_icon').show();
+                        rootContainer.css('background','#283548');
+                    }else{
+                        $('#night_icon').show();
+                        $('#day_icon').hide();
+                        rootContainer.css('background','#e9dfc7');
+                    }
+                });
+                /* 背景交互 */
+                $('.col1').click(function () {
+                    rootContainer.css('background','#e9dfc7');
+                });
+                $('.col2').click(function () {
+                    rootContainer.css('background','#a4a4a4');
+                });
+                $('.col3').click(function () {
+                    rootContainer.css('background','#cdefce');
+                });
+                $('.col4').click(function () {
+                    rootContainer.css('background','#283548');
+                });
+                /* 字号大小 */
+                $('#large-font').click(function () {
+                    if(initFontSize > 20){
+                        return;
+                    }
+                    initFontSize += 1;
+                    rootContainer.css('font-size',initFontSize);
+                    Util.StorageSetter('font-size',initFontSize);
+                });
+                $('#small-font').click(function () {
+                    if(initFontSize < 12){
+                        return;
+                    }
+                    initFontSize -= 1;
+                    rootContainer.css('font-size',initFontSize);
+                    Util.StorageSetter('font-size',initFontSize);
+                });
+                /* 章节翻页 */
+                $('#prev_button').click(function () {
+                    readerModel.preChapter(function (data) {
+                        readerUI(data);
+                    });
+                });
+                $('#next_button').click(function () {
+                    readerModel.nextChapter(function (data) {
+                        readerUI(data);
+                    });
+                });
+                /* 返回主页 */
+                $('.icon-back').click(function () {
+
+                });
+            }
+            main();
+        })();
+    </script>
+</body>
+</html>
